@@ -12,18 +12,20 @@ public class Alquiler {
 
     private int numero;
     private int horas;
-    private String cliente;
+    private Cliente cliente;
     private Bicicleta bicicleta;
 
     public Alquiler() {
     }
 
-    public Alquiler(int numero, int horas, String cliente, Bicicleta bicicleta) {
+    public Alquiler(int numero, int horas, Cliente cliente, Bicicleta bicicleta) {
         this.numero = numero;
         this.horas = horas;
         this.cliente = cliente;
         this.bicicleta = bicicleta;
     }
+
+   
 
     /**
      * Get the value of bicicleta
@@ -48,7 +50,7 @@ public class Alquiler {
      *
      * @return the value of cliente
      */
-    public String getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
@@ -57,7 +59,7 @@ public class Alquiler {
      *
      * @param cliente new value of cliente
      */
-    public void setCliente(String cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -118,7 +120,9 @@ public class Alquiler {
 
     @Override
     public String toString() {
-        return "Alquiler{" + "numero=" + numero + ", horas=" + horas + ", cliente=" + cliente + ", bicicleta=" + bicicleta + '}';
+        return "Alquiler{" + "numero=" + numero + ", horas=" + horas + ", cliente=" + cliente.toString() + ", bicicleta=" + bicicleta + '}';
     }
+
+    
 
 }
