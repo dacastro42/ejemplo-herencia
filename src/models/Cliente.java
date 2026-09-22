@@ -59,7 +59,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return nombre + ", " + correo ;
+        return nombre + "," + correo ;
     }
 
 }

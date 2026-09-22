@@ -4,6 +4,11 @@
  */
 package views;
 
+import javax.swing.JOptionPane;
+import models.Alquiler;
+import models.Bicicleta;
+import models.BicicletaElectrica;
+import models.BicicletaMontana;
 import models.Cliente;
 
 /**
@@ -15,7 +20,12 @@ public class UI_Alquiler extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UI_Alquiler.class.getName());
 
     Cliente[] arregloClientes;
+    BicicletaElectrica[] arregloBicicletasElectricas;
+    BicicletaMontana[] arregloBicicletasMontania;
     int numero = 0;
+    
+    Alquiler[] arregloAlquileres;
+    int cantidadAlquileres=0;
 
     /**
      * Creates new form UI_Alquiler
@@ -24,15 +34,38 @@ public class UI_Alquiler extends javax.swing.JFrame {
         initComponents();
 
         arregloClientes = new Cliente[3];
+        arregloBicicletasElectricas = new BicicletaElectrica[2];
+        arregloBicicletasMontania = new BicicletaMontana[2];
+        arregloAlquileres=new Alquiler[4];
+        
+        
         arregloClientes[0] = new Cliente("David Castro", "dacastro@uao.edu.co");
         arregloClientes[1] = new Cliente("Sofia Casas", "scasas@uao.edu.co");
         arregloClientes[2] = new Cliente("Maria Benavides", "mbenavides@uao.edu.co");
 
+        BicicletaElectrica electrica1 = new BicicletaElectrica(100, 45.0, "BE001", "Eléctrica", true, 20000);
+        BicicletaElectrica electrica2 = new BicicletaElectrica(85, 38.5, "BE002", "Eléctrica", true, 18000);
+        arregloBicicletasElectricas[0] = electrica1;
+        arregloBicicletasElectricas[1] = electrica2;
+
+        BicicletaMontana montana1 = new BicicletaMontana(18, 29.0, "BM001", "Montaña", true, 12000);
+        BicicletaMontana montana2 = new BicicletaMontana(21, 27.5, "BM002", "Montaña", true, 15000);
+        arregloBicicletasMontania[0] = montana1;
+        arregloBicicletasMontania[1] = montana2;
+
         for (int i = 0; i < arregloClientes.length; i++) {
             jComboBox1.addItem(arregloClientes[i].toString());
         }
+        for (int i = 0; i < arregloBicicletasMontania.length; i++) {
+            jComboBox2.addItem(arregloBicicletasMontania[i].getCodigo() + "," + arregloBicicletasMontania[i].getTarifaPorHora());
+        }
+        for (int i = 0; i < arregloBicicletasElectricas.length; i++) {
+            jComboBox3.addItem(arregloBicicletasElectricas[i].getCodigo() + "," + arregloBicicletasElectricas[i].getTarifaPorHora());
+        }
 
-         numero = (int) (Math.random() * 100) + 1;
+        buttonGroup4.add(jRadioButton1);
+        buttonGroup4.add(jRadioButton2);
+
     }
 
     /**
@@ -44,23 +77,25 @@ public class UI_Alquiler extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup4 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel1.setText("Alquiler Bicicletas");
-
-        jLabel2.setText("jLabel2");
-
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jLabel3.setText("Select Cliente");
 
@@ -74,37 +109,87 @@ public class UI_Alquiler extends javax.swing.JFrame {
 
         jLabel4.setText("Cantidad de horas");
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jComboBox2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jComboBox3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jRadioButton1.setText("Select Bicicleta M");
+        jRadioButton1.addActionListener(this::jRadioButton1ActionPerformed);
+
+        jRadioButton2.setText("Select Bicicleta E");
+        jRadioButton2.addActionListener(this::jRadioButton2ActionPerformed);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton1))
+                .addGap(0, 38, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton2))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        jLabel7.setText("Seleccione Su Tipo de bicicleta");
+
+        jButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton2.setText("Show Alquileres");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(121, 121, 121))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(264, 264, 264)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel4)))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4)
                         .addGap(83, 83, 83)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(440, 440, 440)
+                        .addComponent(jLabel7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(121, 121, 121))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,68 +198,147 @@ public class UI_Alquiler extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(79, 79, 79))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton1)
+                        .addGap(79, 79, 79))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(71, 71, 71))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        numero = (int) (Math.random() * 100) + 1;
+        int horas = Integer.parseInt(jTextField2.getText());
+        String seleccion = jComboBox1.getSelectedItem().toString();
+        String[] clienteP = seleccion.split(",");
+        Cliente ojbCliente = new Cliente(clienteP[0], clienteP[1]);
+
+        System.out.println("Clienteeee " + ojbCliente.toString());
+
+        BicicletaMontana objBM1 = null;
+        BicicletaElectrica objBM2 = null;
+        if (jComboBox2.isEnabled()) { //el de montaña
+            String seleccionBiciM = jComboBox2.getSelectedItem().toString();
+            String[] biciMontania = seleccionBiciM.split(",");
+            String codigoBici = biciMontania[0];
+            for (int i = 0; i < arregloBicicletasMontania.length; i++) {
+                if (codigoBici.equals(arregloBicicletasMontania[i].getCodigo())) {
+                    objBM1 = arregloBicicletasMontania[i];
+                    break;
+                }
+
+            }
+
+            Alquiler objAlquiler = new Alquiler(numero, horas, ojbCliente, objBM1);
+            if(cantidadAlquileres<4){
+                arregloAlquileres[cantidadAlquileres]=objAlquiler;
+                cantidadAlquileres++;
+            }
+        } else {
+            if (jComboBox3.isEnabled()) {//el de electrica 
+                String seleccionBiciM = jComboBox3.getSelectedItem().toString();
+                String[] biciElectrica = seleccionBiciM.split(",");
+                String codigoBici = biciElectrica[0];
+                for (int i = 0; i < arregloBicicletasElectricas.length; i++) {
+                    if (codigoBici.equals(arregloBicicletasElectricas[i].getCodigo())) {
+                        objBM2 = arregloBicicletasElectricas[i];
+                        break;
+                    }
+
+                }
+            }
+            Alquiler objAlquiler = new Alquiler(numero, horas, ojbCliente, objBM2);
+            if(cantidadAlquileres<4){
+                arregloAlquileres[cantidadAlquileres]=objAlquiler;
+                cantidadAlquileres++;
+            }
+        }
+
         
-        //int horas=Integer.parseInt( jTextField1.getText());
-        String seleccion=jComboBox1.getSelectedItem().toString();
-        String[] clienteP=seleccion.split(",");
-        Cliente ojbCliente=new Cliente( clienteP[0], clienteP[1]);
-        //System.out.println("Clienteeee "+seleccion);
+
         
-        System.out.println("Clienteeee "+ojbCliente.toString());
-        // Alquiler(numero, horas, Cliente cliente, Bicicleta bicicleta) {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-        /**
-         * @param args the command line arguments
-         */
-        public static void main(String args[]) {
-            /* Set the Nimbus look and feel */
-            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-             */
-            try {
-                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-                logger.log(java.util.logging.Level.SEVERE, null, ex);
-            }
-            //</editor-fold>
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
 
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(() -> new UI_Alquiler().setVisible(true));
+        jComboBox2.setEnabled(true);
+        jComboBox3.setEnabled(false);
+
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        jComboBox3.setEnabled(true);
+        jComboBox2.setEnabled(false);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    //Es el de mostrar 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        String mostrarAlquileres="";
+        
+        for (int i = 0; i < cantidadAlquileres; i++) {
+            mostrarAlquileres += arregloAlquileres[i].toString()+"\n";
+            
         }
+        JOptionPane.showMessageDialog(rootPane, mostrarAlquileres);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new UI_Alquiler().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
