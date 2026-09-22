@@ -19,13 +19,15 @@ public class UI_Alquiler extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UI_Alquiler.class.getName());
 
+    //Arreglo de clientes
     Cliente[] arregloClientes;
+
     BicicletaElectrica[] arregloBicicletasElectricas;
     BicicletaMontana[] arregloBicicletasMontania;
     int numero = 0;
-    
+
     Alquiler[] arregloAlquileres;
-    int cantidadAlquileres=0;
+    int cantidadAlquileres = 0;
 
     /**
      * Creates new form UI_Alquiler
@@ -34,14 +36,16 @@ public class UI_Alquiler extends javax.swing.JFrame {
         initComponents();
 
         arregloClientes = new Cliente[3];
-        arregloBicicletasElectricas = new BicicletaElectrica[2];
-        arregloBicicletasMontania = new BicicletaMontana[2];
-        arregloAlquileres=new Alquiler[4];
-        
-        
         arregloClientes[0] = new Cliente("David Castro", "dacastro@uao.edu.co");
         arregloClientes[1] = new Cliente("Sofia Casas", "scasas@uao.edu.co");
         arregloClientes[2] = new Cliente("Maria Benavides", "mbenavides@uao.edu.co");
+        for (int i = 0; i < arregloClientes.length; i++) {
+            jComboBox1.addItem(arregloClientes[i].toString());
+        }
+
+        arregloBicicletasElectricas = new BicicletaElectrica[2];
+        arregloBicicletasMontania = new BicicletaMontana[2];
+        arregloAlquileres = new Alquiler[4];
 
         BicicletaElectrica electrica1 = new BicicletaElectrica(100, 45.0, "BE001", "Eléctrica", true, 20000);
         BicicletaElectrica electrica2 = new BicicletaElectrica(85, 38.5, "BE002", "Eléctrica", true, 18000);
@@ -53,9 +57,6 @@ public class UI_Alquiler extends javax.swing.JFrame {
         arregloBicicletasMontania[0] = montana1;
         arregloBicicletasMontania[1] = montana2;
 
-        for (int i = 0; i < arregloClientes.length; i++) {
-            jComboBox1.addItem(arregloClientes[i].toString());
-        }
         for (int i = 0; i < arregloBicicletasMontania.length; i++) {
             jComboBox2.addItem(arregloBicicletasMontania[i].getCodigo() + "," + arregloBicicletasMontania[i].getTarifaPorHora());
         }
@@ -78,6 +79,7 @@ public class UI_Alquiler extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -89,8 +91,8 @@ public class UI_Alquiler extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox<>();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,65 +152,64 @@ public class UI_Alquiler extends javax.swing.JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jLabel7.setText("Seleccione Su Tipo de bicicleta");
-
         jButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton2.setText("Show Alquileres");
         jButton2.addActionListener(this::jButton2ActionPerformed);
+
+        jLabel8.setText("Seleccione Su Tipo de bicicleta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(21, 21, 21)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(121, 121, 121))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(284, 284, 284)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addGap(301, 301, 301)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
                         .addComponent(jLabel4)
-                        .addGap(83, 83, 83)
+                        .addGap(18, 18, 18)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(98, 98, 98)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(440, 440, 440)
-                        .addComponent(jLabel7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(121, 121, 121))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
-                .addGap(58, 58, 58)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(41, 41, 41)
                         .addComponent(jButton1)
                         .addGap(79, 79, 79))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -245,8 +246,8 @@ public class UI_Alquiler extends javax.swing.JFrame {
             }
 
             Alquiler objAlquiler = new Alquiler(numero, horas, ojbCliente, objBM1);
-            if(cantidadAlquileres<4){
-                arregloAlquileres[cantidadAlquileres]=objAlquiler;
+            if (cantidadAlquileres < 4) {
+                arregloAlquileres[cantidadAlquileres] = objAlquiler;
                 cantidadAlquileres++;
             }
         } else {
@@ -263,16 +264,13 @@ public class UI_Alquiler extends javax.swing.JFrame {
                 }
             }
             Alquiler objAlquiler = new Alquiler(numero, horas, ojbCliente, objBM2);
-            if(cantidadAlquileres<4){
-                arregloAlquileres[cantidadAlquileres]=objAlquiler;
+            if (cantidadAlquileres < 4) {
+                arregloAlquileres[cantidadAlquileres] = objAlquiler;
                 cantidadAlquileres++;
             }
         }
 
-        
 
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -289,15 +287,15 @@ public class UI_Alquiler extends javax.swing.JFrame {
 
     //Es el de mostrar 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        String mostrarAlquileres="";
-        
+
+        String mostrarAlquileres = "";
+
         for (int i = 0; i < cantidadAlquileres; i++) {
-            mostrarAlquileres += arregloAlquileres[i].toString()+"\n";
-            
+            mostrarAlquileres += arregloAlquileres[i].toString() + "\n";
+
         }
         JOptionPane.showMessageDialog(rootPane, mostrarAlquileres);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -326,6 +324,7 @@ public class UI_Alquiler extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -335,7 +334,7 @@ public class UI_Alquiler extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
